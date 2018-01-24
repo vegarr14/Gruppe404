@@ -5,5 +5,6 @@ import "fmt"
 func main() {
 	fmt.Println("Hello, ??")
 	fmt.Println("Erlend")
-	fmt.Println("Vegar Ryen")
+	fmt.Println("Vegar")
+	fmt.Println("Sigbj�rn")
 }
