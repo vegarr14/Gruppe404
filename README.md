@@ -23,5 +23,6 @@ Del tallet på to. Skriv ned 1 hvis det er igjen en rest. Skriv 0 hvis det ikke 
 Begynn bakerst, gang hvert siffer med 16^n hvor n er posisjonen til tallet. legg sammen alle verdiene.
 #### Decimal -> hex
 Samme som for decimal -> binary, men deler på 16 og skriver resten som er igjen i hexadecimal.
+
 ---
 ## Oppgave 2
