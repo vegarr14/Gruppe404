@@ -1,5 +1,5 @@
-# Gruppe404
-## Obligatorisk oppgave 1
+# Oblig 1
+## Oppgave 1
 
 |Binære Tall    |Hexadesimale Tall  |Desimal Tall|
 |:-------------:|:-----------------:|:----------:|
@@ -22,4 +22,6 @@ Del tallet på to. Skriv ned 1 hvis det er igjen en rest. Skriv 0 hvis det ikke 
 #### Hex -> Decimal
 Begynn bakerst, gang hvert siffer med 16^n hvor n er posisjonen til tallet. legg sammen alle verdiene.
 #### Decimal -> hex
-Samme som for decimal -> binary, men deler på 16 og skriver resten som er igjen i hexadecimal. 
+Samme som for decimal -> binary, men deler på 16 og skriver resten som er igjen i hexadecimal.
+---
+## Oppgave 2
