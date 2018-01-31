@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 	"os/signal"
-	"syscall"
+	"syscall")
 
 func main() {
 	signal_chan := make(chan os.Signal, 1)
