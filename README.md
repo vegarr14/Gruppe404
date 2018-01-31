@@ -1,5 +1,5 @@
 # Gruppe404
-Obligatorisk oppgave 1
+## Obligatorisk oppgave 1
 
 |Binære Tall    |Hexadesimale Tall  |Desimal Tall|
 |:-------------:|:-----------------:|:----------:|
@@ -9,9 +9,9 @@ Obligatorisk oppgave 1
 | 1111111111111111 | 0xFFFF | 65535
 | 10001011110001010 | 0x1178A | 71562
 
-Oppgave A
-  *Binære -> hex*
-    Sett inn 0 foran til antall siffer er delelelig med 4. Konverter 4 tall av gangen til ett tall i hexadecimal.
+### Oppgave A
+#### Binære -> hex
+Sett inn 0 foran til antall siffer er delelelig med 4. Konverter 4 tall av gangen til ett tall i hexadecimal.
 
 
-Oppgave B
+### Oppgave B
