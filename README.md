@@ -10,5 +10,8 @@ Obligatorisk oppgave 1
 | 10001011110001010 | 0x1178A | 71562
 
 Oppgave A
+  *Binære -> hex*
+    Sett inn 0 foran til antall siffer er delelelig med 4. Konverter 4 tall av gangen til ett tall i hexadecimal.
+
 
 Oppgave B
