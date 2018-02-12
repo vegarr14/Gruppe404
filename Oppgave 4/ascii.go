@@ -17,7 +17,8 @@ func ExtendedASCIIText() {}
 
 
 func main() {
-  for tekst := 0x80 ; tekst <= 0xFF ; tekst++ {
-    fmt.Println(tekst)
+  var slice [10] int = 0,1,2,3,4,5,6,7,8,9
+  for i := 0; i < 256; i++ {
+    fmt.Println(slice[i])
   }
 }
