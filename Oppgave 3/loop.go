@@ -13,7 +13,7 @@ func main() {
 			fmt.Println("hallo")
 		}
 		if scanner.Text() == "exit" {
-			fmt.Println("Fuck golang :)")
+			fmt.Println("bye")
 			os.Exit(1)
 		}
 	}
