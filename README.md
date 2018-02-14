@@ -36,4 +36,7 @@ Loop.go bruker 1MB minne og under 0.1% av CPUen på pcen vi testet på
 
 ---
 ## Oppgave 4
-Bytes 0x80 og 0x9f gir bare ukjente symboler i både terminal og powershell
+### Oppgave A
+Vi får skrevet ut symboler fra iso 8859-1 mellom 80 og ff. Mellom 80 og 9f får vi bare ukjente tegn fordi de ikke eksisterer i iso 8859-1. Ingenting er mappet til de verdiene. Vi får det samme resultatet på alle gruppemedlemmers pcer
+### Oppgave B
+Vi testet koden i terminal og powershell. Fikk samme resultat i begge.
