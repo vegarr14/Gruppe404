@@ -26,3 +26,14 @@ Samme som for decimal -> binary, men deler på 16 og skriver resten som er igjen
 
 ---
 ## Oppgave 2
+### Oppgave C 
+![alt text](https://github.com/vegarr14/Gruppe404/blob/Oblig-1/Oppgave%202/Diagram.PNG "test")
+Bubble sort funksjonene bruker mange flere operasjoner enn quick sort. Bubble sort funksjonene har mye høyere økning på antall operasjoner enn antall elementer (O(n^2)). Quick sort har ganske lik økning på antall operasjoner og antall elementer (O(n))
+
+---
+## Oppgave 3
+Loop.go bruker 1MB minne og under 0.1% av CPUen på pcen vi testet på
+
+---
+## Oppgave 4
+Bytes 0x80 og 0x9f gir bare ukjente symboler i både terminal og powershell
