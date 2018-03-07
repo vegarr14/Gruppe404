@@ -4,9 +4,10 @@ import (
   "os"
   "log"
   "fmt"
+//  "io/ioutil"
 )
 
-func main () {
+func main() {
 
   fi, err := os.Lstat("text.txt")
   if err != nil {
@@ -27,12 +28,19 @@ func main () {
   fmt.Println("Has Unix permission bits:", fi.Mode())
 
   ft := fi.Mode();
-  fmt.Println(ft&os.ModeAppend)
-  fmt.Println(ft&os.ModeDevice)
-  fmt.Println(ft&os.ModeCharDevice)
-  fmt.Println(ft&os.ModeSymlink)
-
-
-
-
+  if (ft&os.ModeAppend != 0) {
+    fmt.Println("Is append only")
+  } else {
+    fmt.Println("Is not append only")
+  }
+  if (ft&os.ModeDevice != 0){
+    fmt.Println("Is a device file")
+  } else {
+    fmt.Println("Is not a device file")
+  }
+  if (ft&os.ModeSymlink != 0){
+    fmt.Println("Is a symbolic link")
+  } else {
+    fmt.Println("Is not a symbolic link")
+  }
 }
