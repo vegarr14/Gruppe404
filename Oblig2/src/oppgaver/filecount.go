@@ -4,12 +4,13 @@ import (
 	"fmt"
 	"io/ioutil"
 	"log"
+	"os"
 )
 
 func main() {
 	fmt.Println("Information about text.txt")
 	var a [256]int
-	content, err := ioutil.ReadFile("text.txt")
+	content, err := ioutil.ReadFile(os.Args[1])
 	if err != nil {
 		log.Fatal(err)
 	}
