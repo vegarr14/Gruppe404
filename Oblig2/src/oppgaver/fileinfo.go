@@ -4,19 +4,18 @@ import (
   "os"
   "log"
   "fmt"
-//  "io/ioutil"
 )
 
 func main() {
 
-  fi, err := os.Lstat("text.txt")
+  fi, err := os.Lstat(os.Args[1])
   if err != nil {
     log.Fatal(err)
   }
   fmt.Println("Information about file", fi.Name())
   fmt.Println("Size:", fi.Size(), "bytes." , fi.Size()/1024, "KB.", fi.Size()/1024/1024, "MB.", fi.Size()/1024/1024/1024, "GB.")
   if (fi.Mode().IsDir()==false) {
-    fmt.Println("Is not a diretory.")
+    fmt.Println("Is not a directory.")
   } else {
     fmt.Println("Is a directory.")
   }
