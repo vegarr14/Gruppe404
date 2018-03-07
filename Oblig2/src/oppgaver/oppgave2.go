@@ -4,20 +4,10 @@ import (
 	"fmt"
 	"io/ioutil"
 	"log"
-	"os"
-	"bufio"
 )
 
 func main() {
 	fmt.Println("Information about text.txt")
-	file, _ := os.Open("text.txt")
-	fileScanner := bufio.NewScanner(file)
-	lineCount := 0
-	for fileScanner.Scan() {
-	    lineCount++
-	}
-	fmt.Println("Number of lines in file:", lineCount)
-
 	var a [256]int
 	content, err := ioutil.ReadFile("text.txt")
 	if err != nil {
@@ -26,6 +16,7 @@ func main() {
 	for i := 0; i < len(content); i++ {
 		a[content[i]]++
 	}
+	fmt.Println("Number of lines in file:", a[10]+1)
 	fmt.Println("Most common runes")
 	for i := 0; i < 5; i++ {
 		antall := 0
