@@ -28,8 +28,8 @@ func main() {
 				tegn = i
 			}
 		}
-		fmt.Println(i+1)
-		fmt.Printf("Rune: ",)
+		fmt.Printf("%d", i+1)
+		fmt.Printf(". Rune: ",)
 		fmt.Printf("%q", tegn)
 		fmt.Println(", Counts: ",antall)
 		a[tegn] = 0
