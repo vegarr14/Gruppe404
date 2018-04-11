@@ -6,7 +6,6 @@ import (
   "io"
 )
 
-// hello world, the web server
 func webserver(w http.ResponseWriter, req *http.Request) {
 	io.WriteString(w, "Hello, client!\n")
 }
