@@ -1,7 +1,7 @@
 package main
 
 import (
-  //"encoding/json"
+  "encoding/json"
   "net/http"
   "log"
   "io/ioutil"
@@ -24,14 +24,13 @@ func json1(w http.ResponseWriter, req *http.Request)  {
     if err != nil {
       log.Fatal(err)
     }
-    dataTL := strings.TrimLeft(string(miljoGet),'{"entries":[')
-    dataTR := strings.TrimRight(DataTR),`],"page":1,"pages":1,"posts":14}`))
-    data := sdataTR)
+    dataTL := strings.Replace(string(miljoGet),`{"entries":[`,"", 1)
+    dataTR := strings.Replace(dataTL,`],"page":1,"pages":1,"posts":56}`,"", 1)
+    data := strings.Replace(dataTR,"},{", "}{", -1)
     fmt.Printf("%s", data)
 
-  /*  type Miljostasjon struct {
-      navn string
-      plast string
+    type Miljostasjon struct {
+      Navn, Plast string
     }
     dec := json.NewDecoder(strings.NewReader(data))
     for {
@@ -41,9 +40,9 @@ func json1(w http.ResponseWriter, req *http.Request)  {
         } else if err != nil{
             log.Fatal(err)
         }
-        fmt.Printf("%+v", m.navn)
+        fmt.Printf("%s: %s\n", m.Navn, m.Plast)
     }
-*/
+
 }
 
 func main(){
