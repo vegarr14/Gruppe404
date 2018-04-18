@@ -77,7 +77,23 @@ func json1(w http.ResponseWriter, req *http.Request) {
       io.WriteString(w, m[i].Art + " / " + m[i].Tjeneste_tekst + " / " + m[i].Virksomhetsomraade + " / " + m[i].Virksomhetsomraade + " / " + m[i].Art_tekst + " / " + m[i].Tjeneste_nr + " / " + m[i].Inntekt_utgift + "\n")
    }
   }
-
+  }
+   }
+  func json4(w http.ResponseWriter, req *http.Request) {
+    type Variabler struct {
+      Nord, Barnehagens_navn, Lengdegrad, Oest, Adresse, Breddegrad string
+   }
+    var m []Variabler
+    link := ("https://hotell.difi.no/api/json/stavanger/barnehager")
+    err := json.Unmarshal(getJson(link), &m)
+    if err != nil {
+      fmt.Println("error:", err)
+   }
+    io.WriteString(w, "Viser budsjettforslag for 2016 i Stavanger\n")
+    for i := 0 ; i < len(m) ; i++ {
+      io.WriteString(w, m[i].Nord + " / " + m[i].Barnehagens_navn + " / " + m[i].Lengdegrad + " / " + m[i].Oest + " / " + m[i].Adresse + " / " + m[i].Breddegrad + "\n")
+   }
+  }
 
 func main(){
   http.HandleFunc("/", hello)
