@@ -78,6 +78,33 @@ func json1(w http.ResponseWriter, req *http.Request) {
    }
   }
 
+  func json5(w http.ResponseWriter, req *http.Request) {
+    type Variabler struct {
+      Name, Adressenavn string
+    }
+
+    type htmlStruct struct {
+      PageTitle string
+      Linje2 string
+      Array []Variabler
+    }
+
+    var m []Variabler
+    tmpl := template.Must(template.ParseFiles("layout5.html"))
+    link := ("https://hotell.difi.no/api/json/stavanger/utsiktspunkt")
+    err := json.Unmarshal(getJson(link), &m)
+    if err != nil {
+      fmt.Println("error:", err)
+    }
+    data := htmlStruct{
+      PageTitle: "Utsiktspunkter i Stavanger",
+      Linje2: "Navn / Addresse",
+      Array: m,
+    }
+    tmpl.Execute(w, data)
+
+   }
+
 
 func main(){
   http.HandleFunc("/", hello)
@@ -85,7 +112,7 @@ func main(){
   http.HandleFunc("/2", json2)
   http.HandleFunc("/3", json3)
   //  http.HandleFunc("/4", json4)
-//  http.HandleFunc("/5", json5)
+  http.HandleFunc("/5", json5)
 	log.Fatal(http.ListenAndServe("127.0.0.1:8080", nil))
  }
 
