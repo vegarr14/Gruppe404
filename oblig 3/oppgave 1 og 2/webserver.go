@@ -8,6 +8,7 @@ import (
   "io/ioutil"
   "encoding/json"
   "bytes"
+
  )
 
  func hello(w http.ResponseWriter, req *http.Request) {
@@ -31,13 +32,29 @@ func json1(w http.ResponseWriter, req *http.Request) {
   }
  }
 
+ func json2(w http.ResponseWriter, req *http.Request) {
+   type Variabler struct {
+     Klokkeslett, Sted, Antall_ledige_plasser string
+   }
+   var m []Variabler
+   link := ("https://opencom.no/dataset/36ceda99-bbc3-4909-bc52-b05a6d634b3f/resource/d1bdc6eb-9b49-4f24-89c2-ab9f5ce2acce/download/parking.json")
+   err := json.Unmarshal(getJson(link), &m)
+   if err != nil {
+     fmt.Println("error:", err)
+   }
+   io.WriteString(w, "viser navn, lokalisering og antall ledige plasser i Stavanger Parkerings 9 parkeringshus\n")
+   for i := 0 ; i < len(m) ; i++ {
+     io.WriteString(w, m[i].Klokkeslett + " / " + m[i].Sted + " / " + m[i].Antall_ledige_plasser + "\n")
+   }
+  }
+
+
 func main(){
   http.HandleFunc("/", hello)
   http.HandleFunc("/1", json1)
   http.HandleFunc("/2", json2)
-  http.HandleFunc("/3", json3)
-  http.HandleFunc("/4", json4)
-  http.HandleFunc("/5", json5)
+//  http.HandleFunc("/3", json3)
+//  http.HandleFunc("/5", json5)
 	log.Fatal(http.ListenAndServe("127.0.0.1:8080", nil))
  }
 
@@ -48,6 +65,6 @@ func main(){
    }
    defer resp.Body.Close()
    body, err := ioutil.ReadAll(resp.Body)
-   body2 := bytes.TrimRight(bytes.TrimLeft(body, `{"entries":`), `,"pages:1ot234567890}`)
+   body2 := bytes.TrimRight(bytes.TrimLeft(body, `{"entries id":`), `,"abcdefghijklmnopqrstuvwxyzDOKM pages:1ot234567890}`)
    return body2
  }
