@@ -51,16 +51,32 @@ func json1(w http.ResponseWriter, req *http.Request) {
    type Variabler struct {
      Klokkeslett, Sted, Antall_ledige_plasser string
    }
+
+   type htmlStruct struct {
+     PageTitle string
+     Linje2 string
+     Array []Variabler
+   }
+
    var m []Variabler
+   tmpl := template.Must(template.ParseFiles("layout2.html"))
    link := ("https://opencom.no/dataset/36ceda99-bbc3-4909-bc52-b05a6d634b3f/resource/d1bdc6eb-9b49-4f24-89c2-ab9f5ce2acce/download/parking.json")
    err := json.Unmarshal(getJson(link), &m)
    if err != nil {
      fmt.Println("error:", err)
    }
-   io.WriteString(w, "viser navn, lokalisering og antall ledige plasser i Stavanger Parkerings 9 parkeringshus\n")
-   for i := 0 ; i < len(m) ; i++ {
-     io.WriteString(w, m[i].Klokkeslett + " / " + m[i].Sted + " / " + m[i].Antall_ledige_plasser + "\n")
+
+   data := htmlStruct{
+     PageTitle: "Parkering i Stavanger",
+     Linje2: "Klokkeslett / Lokalisering / Antall ledige plasser",
+     Array: m,
    }
+     tmpl.Execute(w, data)
+
+   //io.WriteString(w, "navn, lokalisering, ledige plasser \n")
+   //for i := 0 ; i < len(m) ; i++ {
+  //   io.WriteString(w, m[i].Klokkeslett + " / " + m[i].Sted + " / " + m[i].Antall_ledige_plasser + "\n")
+   //}
   }
   func json3(w http.ResponseWriter, req *http.Request) {
     type Variabler struct {
