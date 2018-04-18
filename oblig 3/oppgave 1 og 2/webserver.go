@@ -4,6 +4,7 @@ import (
   "log"
   "io"
   "net/http"
+  "html/template"
   "fmt"
   "io/ioutil"
   "encoding/json"
@@ -19,17 +20,31 @@ func json1(w http.ResponseWriter, req *http.Request) {
   type Variabler struct {
     Navn, Plast, Glass_metall, Tekstil_sko string
   }
+
+  type htmlStruct struct {
+    PageTitle string
+    Linje2 string
+    Array []Variabler
+  }
+
   var m []Variabler
+  tmpl := template.Must(template.ParseFiles("layout.html"))
   link := ("https://hotell.difi.no/api/json/stavanger/miljostasjoner")
   err := json.Unmarshal(getJson(link), &m)
   if err != nil {
     fmt.Println("error:", err)
   }
-  io.WriteString(w, "Miljøstasjoner i Stavanger\n")
-  io.WriteString(w, "Sted / Tar plast / tar glass&metall / tar tekstil&sko\n")
-  for i := 0 ; i < len(m) ; i++ {
-    io.WriteString(w, m[i].Navn + " / " + m[i].Plast + " / " + m[i].Glass_metall + " / " + m[i].Tekstil_sko + "\n")
+  data := htmlStruct{
+    PageTitle: "Miljøstasjoner i Stavanger",
+    Linje2: "Sted / Plast / glass&metall / tekstil&sko",
+    Array: m,
   }
+  tmpl.Execute(w, data)
+  //io.WriteString(w, "Miljøstasjoner i Stavanger\n")
+  //io.WriteString(w, "Sted / Tar plast / tar glass&metall / tar tekstil&sko\n")
+  //for i := 0 ; i < len(m) ; i++ {
+  //  io.WriteString(w, m[i].Navn + " / " + m[i].Plast + " / " + m[i].Glass_metall + " / " + m[i].Tekstil_sko + "\n")
+  //}
  }
 
  func json2(w http.ResponseWriter, req *http.Request) {
@@ -81,6 +96,6 @@ func main(){
    }
    defer resp.Body.Close()
    body, err := ioutil.ReadAll(resp.Body)
-   body2 := bytes.TrimRight(bytes.TrimLeft(body, `{"entries id":`), `,"abcdefghijklmnopqrstuvwxyzDOKM pages:1ot234567890}`)
+   body2 := bytes.Trim(body, `{entries},"pages:1ot234567890}`)
    return body2
  }
