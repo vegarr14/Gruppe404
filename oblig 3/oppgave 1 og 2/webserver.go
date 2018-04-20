@@ -9,12 +9,11 @@ import (
   "io/ioutil"
   "encoding/json"
   "bytes"
+)
 
- )
-
- func hello(w http.ResponseWriter, req *http.Request) {
- 	io.WriteString(w, "Hello, client!\n")
- }
+func hello(w http.ResponseWriter, req *http.Request) {
+ io.WriteString(w, "Hello, client!\n")
+}
 
 func json1(w http.ResponseWriter, req *http.Request) {
   type Variabler struct {
@@ -160,6 +159,7 @@ func main(){
 	log.Fatal(http.ListenAndServe("127.0.0.1:8080", nil))
 }
 
+//Får link til json, henter innholdet og fjerner unødvendige tegn fra begge ender.
 func getJson(s string) []byte {
   resp, err := http.Get(s)
   CheckError(err)

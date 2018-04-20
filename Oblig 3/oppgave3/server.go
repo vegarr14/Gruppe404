@@ -38,7 +38,7 @@ func tcp() {
 
 	ln, err := net.Listen("tcp", ":17")
 	CheckError(err)
-	qoute := "xd"
+	qoute := "Hei"
 
 	for {
 		conn, _ := ln.Accept()
