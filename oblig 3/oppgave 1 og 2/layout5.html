@@ -1,11 +1,21 @@
-<h1>
-  {{.PageTitle}}
-</h1>
-<h2>
-  {{.Linje2}}
-</h2>
-<ul>
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div>
+  <h1>
+    {{.PageTitle}}
+  </h1>
+  <h2>
+    {{.Linje2}}
+  </h2>
+  <ul>
     {{range .Array}}
       <li>{{.Name}}{{" / "}}{{.Adressenavn}}</li>
     {{end}}
-</ul>
+  </ul>
+</div>
+</body>
+</html>
