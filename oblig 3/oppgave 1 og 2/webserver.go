@@ -31,9 +31,8 @@ func json1(w http.ResponseWriter, req *http.Request) {
   tmpl := template.Must(template.ParseFiles("layout.html"))
   link := ("https://hotell.difi.no/api/json/stavanger/miljostasjoner")
   err := json.Unmarshal(getJson(link), &m)
-  if err != nil {
-    fmt.Println("error:", err)
-  }
+  CheckError(err)
+
   data := htmlStruct{
     PageTitle: "Miljøstasjoner i Stavanger",
     Linje2: "Sted / Plast / glass&metall / tekstil&sko",
@@ -41,120 +40,113 @@ func json1(w http.ResponseWriter, req *http.Request) {
   }
 
   tmpl.Execute(w, data)
- }
+}
 
- func json2(w http.ResponseWriter, req *http.Request) {
-   type Variabler struct {
-     Klokkeslett, Sted, Antall_ledige_plasser string
-   }
-
-   type htmlStruct struct {
-     PageTitle string
-     Linje2 string
-     Array []Variabler
-   }
-
-   var m []Variabler
-   tmpl := template.Must(template.ParseFiles("layout2.html"))
-   link := ("https://opencom.no/dataset/36ceda99-bbc3-4909-bc52-b05a6d634b3f/resource/d1bdc6eb-9b49-4f24-89c2-ab9f5ce2acce/download/parking.json")
-   err := json.Unmarshal(getJson(link), &m)
-   if err != nil {
-     fmt.Println("error:", err)
-   }
-
-   data := htmlStruct{
-     PageTitle: "Parkering i Stavanger",
-     Linje2: "Klokkeslett / Lokalisering / Antall ledige plasser",
-     Array: m,
-   }
-     tmpl.Execute(w, data)
-
-  }
-  func json3(w http.ResponseWriter, req *http.Request) {
-    type Variabler struct {
-      Virksomhetsomraade, Art_tekst, Inntekt_utgift string
-   }
-
-   type htmlStruct struct {
-     PageTitle string
-     Linje2 string
-     Array []Variabler
-   }
-
-    var m []Variabler
-    tmpl := template.Must(template.ParseFiles("layout3.html"))
-    link := ("https://hotell.difi.no/api/json/stavanger/budsjettforslag2016")
-    err := json.Unmarshal(getJson(link), &m)
-    if err != nil {
-      fmt.Println("error:", err)
-   }
-
-   data := htmlStruct{
-     PageTitle: "Budsjettforslag for Stavanger, 2016",
-     Linje2: "Virksomhetsområde / Beskrivelse / Inntekt eller utgift",
-     Array: m,
-   }
-
-   tmpl.Execute(w, data)
+func json2(w http.ResponseWriter, req *http.Request) {
+  type Variabler struct {
+    Klokkeslett, Sted, Antall_ledige_plasser string
   }
 
-  func json4(w http.ResponseWriter, req *http.Request) {
-    type Variabler struct {
-      Barnehagens_navn, Adresse string
-   }
-
-   type htmlStruct struct {
-     PageTitle string
-     Linje2 string
-     Array []Variabler
-   }
-    var m []Variabler
-    tmpl := template.Must(template.ParseFiles("layout4.html"))
-    link := ("https://hotell.difi.no/api/json/stavanger/barnehager")
-    err := json.Unmarshal(getJson(link), &m)
-    if err != nil {
-      fmt.Println("error:", err)
-   }
-
-   data := htmlStruct{
-     PageTitle: "Barnehager i Stavanger",
-     Linje2: "Navn / Addresse",
-     Array: m,
-   }
-
-   tmpl.Execute(w, data)
+  type htmlStruct struct {
+    PageTitle string
+    Linje2 string
+    Array []Variabler
   }
 
-  func json5(w http.ResponseWriter, req *http.Request) {
-    type Variabler struct {
-      Name, Adressenavn string
-    }
+  var m []Variabler
+  tmpl := template.Must(template.ParseFiles("layout2.html"))
+  link := ("https://opencom.no/dataset/36ceda99-bbc3-4909-bc52-b05a6d634b3f/resource/d1bdc6eb-9b49-4f24-89c2-ab9f5ce2acce/download/parking.json")
+  err := json.Unmarshal(getJson(link), &m)
+  CheckError(err)
+
+  data := htmlStruct{
+    PageTitle: "Parkering i Stavanger",
+    Linje2: "Klokkeslett / Lokalisering / Antall ledige plasser",
+    Array: m,
+  }
+
+  tmpl.Execute(w, data)
+}
+func json3(w http.ResponseWriter, req *http.Request) {
+  type Variabler struct {
+    Virksomhetsomraade, Art_tekst, Inntekt_utgift string
+  }
+
+  type htmlStruct struct {
+    PageTitle string
+    Linje2 string
+    Array []Variabler
+  }
+
+  var m []Variabler
+  tmpl := template.Must(template.ParseFiles("layout3.html"))
+  link := ("https://hotell.difi.no/api/json/stavanger/budsjettforslag2016")
+  err := json.Unmarshal(getJson(link), &m)
+  CheckError(err)
+
+  data := htmlStruct{
+    PageTitle: "Budsjettforslag for Stavanger, 2016",
+    Linje2: "Virksomhetsområde / Beskrivelse / Inntekt eller utgift",
+    Array: m,
+  }
+
+  tmpl.Execute(w, data)
+}
+
+func json4(w http.ResponseWriter, req *http.Request) {
+  type Variabler struct {
+    Barnehagens_navn, Adresse string
+}
+
+type htmlStruct struct {
+  PageTitle string
+  Linje2 string
+  Array []Variabler
+}
+  var m []Variabler
+  tmpl := template.Must(template.ParseFiles("layout4.html"))
+  link := ("https://hotell.difi.no/api/json/stavanger/barnehager")
+  err := json.Unmarshal(getJson(link), &m)
+  CheckError(err)
+
+  data := htmlStruct{
+    PageTitle: "Barnehager i Stavanger",
+    Linje2: "Navn / Addresse",
+    Array: m,
+  }
+
+  tmpl.Execute(w, data)
+}
+
+func json5(w http.ResponseWriter, req *http.Request) {
+  type Variabler struct {
+    Name, Adressenavn string
+  }
 
     type htmlStruct struct {
-      PageTitle string
-      Linje2 string
-      Array []Variabler
-    }
+    PageTitle string
+    Linje2 string
+    Array []Variabler
+  }
 
-    var m []Variabler
-    tmpl := template.Must(template.ParseFiles("layout5.html"))
-    link := ("https://hotell.difi.no/api/json/stavanger/utsiktspunkt")
-    err := json.Unmarshal(getJson(link), &m)
-    if err != nil {
-      fmt.Println("error:", err)
-    }
-    data := htmlStruct{
-      PageTitle: "Utsiktspunkter i Stavanger",
-      Linje2: "Navn / Addresse",
-      Array: m,
-    }
+  var m []Variabler
+  tmpl := template.Must(template.ParseFiles("layout5.html"))
+  link := ("https://hotell.difi.no/api/json/stavanger/utsiktspunkt")
+  err := json.Unmarshal(getJson(link), &m)
+  CheckError(err)
 
-    tmpl.Execute(w, data)
-   }
+  data := htmlStruct{
+    PageTitle: "Utsiktspunkter i Stavanger",
+    Linje2: "Navn / Addresse",
+    Array: m,
+  }
 
-   func css(w http.ResponseWriter, req *http.Request){
-     http.ServeFile(w, req, "style.css")
-   }
+  tmpl.Execute(w, data)
+}
+
+  func css(w http.ResponseWriter, req *http.Request){
+    http.ServeFile(w, req, "style.css")
+  }
 
 func main(){
   http.HandleFunc("/", hello)
@@ -166,15 +158,19 @@ func main(){
   //Henter stylesheet
   http.HandleFunc("/style.css", css)
 	log.Fatal(http.ListenAndServe("127.0.0.1:8080", nil))
- }
+}
 
- func getJson(s string) []byte {
-   resp, err := http.Get(s)
-   if err != nil {
-     fmt.Println("error:", err)
-   }
-   defer resp.Body.Close()
-   body, err := ioutil.ReadAll(resp.Body)
-   body2 := bytes.Trim(body, `{entries},"pages:1ot234567890}`)
-   return body2
- }
+func getJson(s string) []byte {
+  resp, err := http.Get(s)
+  CheckError(err)
+  defer resp.Body.Close()
+  body, err := ioutil.ReadAll(resp.Body)
+  body2 := bytes.Trim(body, `{entries},"pages:1ot234567890}`)
+  return body2
+}
+
+func CheckError(err error) {
+  if err != nil {
+    fmt.Println("Error: ", err)
+  }
+}
