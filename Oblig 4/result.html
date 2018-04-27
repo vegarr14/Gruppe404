@@ -4,10 +4,29 @@
   <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-  <h1>
-    {{.Name}}
-    {{.ID}}
-  </h1>
+  <div id="content">
+    <div id="locationBox" class="box">
+      <h1>
+        {{.Name}}
+        {{", "}}
+        {{.Sys.Country}}
+      </h1>
+    </div>
+    <div id="currentWBox" class="box">
+      <h1>Current Weather</h1>
+      <h2>
+        {{range .Weather}}
+          {{.Main}}
+        {{end}}
+      </h2>
+      <h1>
+        {{.Main.Temp}}
+      </h1>
+      <p>
+        {{range .Weather}}
+          {{.Description}}
+        {{end}}
+      </p>
   </div>
   <svg class="triple" viewBox="0 0 100 100" preserveAspectRatio="none">
     <polygon fill="#336699" points="0,0 100,0 0,90" />

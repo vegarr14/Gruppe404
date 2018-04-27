@@ -6,18 +6,34 @@ html, body {
 h1{
   color: #29537c;
 }
-#searchBox{
+h2{
+  color: #29537c;
+}
+.box{
+  margin-top: 15px;
+  margin-left: 15px;
+  float: left;
   border-radius: 25px;
-  position: absolute;
-  width: 400px;
-  height: 200px;
-  z-index: 15;
-  top: 50%;
-  left: 50%;
-  margin: -100px 0 0 -200px;
   background:rgb(245,245,245);
   box-shadow: 2px 3px 10px black;
+  padding: 10px;
   text-align: center;
+}
+#currentWBox{
+  width: 30%%;
+}
+#content{
+  margin: auto;
+  width: 70%;
+}
+#locationBox{
+  margin-top: 15px;
+  width: 100%
+}
+#searchBox{
+  width: 400px;
+  height: 200px;
+  margin: auto;
 }
 
 .textField{
