@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+  <div id="searchBox">
+    <h1>
+      {{.PageTitle}}
+    </h1>
+    <form action="/result" method="post">
+      <input type="text" class="textField" name="search"><br>
+      <input type="submit" class="button" value="Søk">
+    </form>
+  </div>
+  <svg class="triple" viewBox="0 0 100 100" preserveAspectRatio="none">
+    <polygon fill="#336699" points="0,0 100,0 0,90" />
+    <polygon fill="#29537c" points="0,60 100,0 30,100 0,100 " />
+    <polygon fill="#1f4060" points="30,100 100,0 100,100" />
+  </svg>
+</body>
+</html>
