@@ -55,7 +55,7 @@ type CWStruct struct {
 func CurrentWeather(location string) (Feilmelding, CWStruct) {
   var m CWStruct
   var feil Feilmelding
-  link := "https://api.openweathermap.org/data/2.5/weather?q=" + location + "&appid=b1bf40e9707aee87cf7f39cd96df39b1"
+  link := "https://api.openweathermap.org/data/2.5/weather?q=" + location + "&units=metric&appid=b1bf40e9707aee87cf7f39cd96df39b1"
   resp, err := http.Get(link)
   CheckError(err)
   defer resp.Body.Close()
