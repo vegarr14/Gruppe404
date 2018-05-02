@@ -4,6 +4,11 @@
   <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
+  <svg class="triple" viewBox="0 0 100 100" preserveAspectRatio="none">
+    <polygon fill="#336699" points="0,0 100,0 0,90" />
+    <polygon fill="#29537c" points="0,60 100,0 30,100 0,100 " />
+    <polygon fill="#1f4060" points="30,100 100,0 100,100" />
+  </svg>
   <div id="content">
     <div id="locationBox" class="box">
       <h1>
@@ -14,24 +19,27 @@
     </div>
     <div id="currentWBox" class="box">
       <h1>Current Weather</h1>
-      <h2>
-        {{range .Weather}}
-          {{.Main}}
-        {{end}}
-      </h2>
-      <h1>
-        {{.Main.Temp}}
-      </h1>
-      <p>
-        {{range .Weather}}
-          {{.Description}}
-        {{end}}
-      </p>
-  </div>
-  <svg class="triple" viewBox="0 0 100 100" preserveAspectRatio="none">
-    <polygon fill="#336699" points="0,0 100,0 0,90" />
-    <polygon fill="#29537c" points="0,60 100,0 30,100 0,100 " />
-    <polygon fill="#1f4060" points="30,100 100,0 100,100" />
-  </svg>
+      <div id="currentWBoxData" class="dataBox">
+        <div id="currentWBoxW">
+          <h2>
+            {{(index .Weather 0).Main}}
+          </h2>
+        </div>
+          <div id="currentWBoxTemp">
+            <h2>
+              {{.Main.Temp}}°C
+            </h2>
+          </div>
+          <div id="currentWBoxWind">
+            <h2>
+              Wind: {{.Wind.Speed}} M/s
+            </h2>
+          </div>
+      </div>
+    </div>
+    <div id="sun" class="box">
+      <h2>Sunrise {{.Sys.Sunrise}}</h2>
+      <h2>Sunset {{.Sys.Sunrise}}</h2>
+    </div>
 </body>
 </html>
