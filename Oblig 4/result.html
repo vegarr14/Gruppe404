@@ -25,16 +25,16 @@
             {{(index .Current.Weather 0).Main}}
           </h2>
         </div>
-          <div id="currentWBoxTemp">
-            <h2>
-              {{.Current.Main.Temp}}°C
-            </h2>
-          </div>
-          <div id="currentWBoxWind">
-            <h2>
-              Wind: {{.Current.Wind.Speed}} M/s
-            </h2>
-          </div>
+        <div id="currentWBoxTemp">
+          <h2>
+            {{.Current.Main.Temp}}°C
+          </h2>
+        </div>
+        <div id="currentWBoxWind">
+          <h2>
+            Wind: {{.Current.Wind.Speed}} M/s
+          </h2>
+        </div>
       </div>
     </div>
     <div id="responseBox" class="box">
@@ -42,6 +42,23 @@
     </div>
     <div id="sun" class="box">
       <h2>{{.Time}}</h2>
+    </div>
+    <div id="forecastBox" class="box">
+      <div id="forecastBoxData" class="dataBox">
+        <table>
+          <tr>
+            <th>Time</th>
+            <th>Forecast</th>
+            <th>Temp</th>
+          </th>
+          {{range .Forecast.List}}
+            <tr>
+              <td>{{(index .Forecast.List 0).Dt}}</td>
+              <td>{{.Forecast.List.Weather.Main}}</td>
+              <td>{{.Forecast.List.Main.Temp}}</td>
+            </tr>
+          {{end}}
+      </div>
     </div>
 </body>
 </html>

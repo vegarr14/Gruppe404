@@ -111,8 +111,9 @@ Forecast struct {
 		Population int    `json:"population"`
 	} `json:"city"`
 }
-Response string
-Time string
+  //Modified Data
+  Response string
+  Time string
 }
 
 func Weather(location string) (Feilmelding, WStruct) {
