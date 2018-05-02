@@ -18,7 +18,7 @@ func start(w http.ResponseWriter, r *http.Request) {
 
 
     data := htmlStruct{
-      PageTitle: "Søk her",
+      PageTitle: "Search for a city here",
     }
 
     tmpl.Execute(w, data)
