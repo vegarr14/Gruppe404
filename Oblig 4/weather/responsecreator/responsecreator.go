@@ -1,10 +1,11 @@
 package responsecreator
 
 import (
-  "fmt"
+  "time"
+  "strconv"
 )
 
-func Getresponse(input int) (data) {
+func Getresponse(input int) (string) {
   var s string
   if 200<= input && input<=232  {
     s ="thunder"
@@ -16,12 +17,24 @@ func Getresponse(input int) (data) {
     s= "you know nothing (jon)snow"
   }else if 701<= input && input <= 781 {
     s= "there is something bad happening"
-  }else if == 800 input {
+  }else if 800 == input {
     s= "all clear"
   }else if 801<= input && input <= 804 {
     s= "clouds"
   }
-
   return s
+}
 
+func Time(sunrise int64, sunset int64) (string) {
+  var t string
+  now := time.Now()
+  Unixnow := now.Unix()
+  if Unixnow < sunrise {
+    t = "sunrise in " + strconv.FormatInt(sunrise - Unixnow, 10) + " seconds"
+  } else if Unixnow < sunset {
+    t = "sunset in " + strconv.FormatInt(sunset - Unixnow, 10) + " seconds"
+  } else if Unixnow > sunset {
+    t = "sunset was " + strconv.FormatInt(Unixnow - sunset, 10) + " seconds ago"
   }
+  return t
+}

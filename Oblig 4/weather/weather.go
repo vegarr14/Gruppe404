@@ -5,6 +5,7 @@ import (
   "net/http"
   "io/ioutil"
   "encoding/json"
+  "./responsecreator"
 )
 
 func CheckError(err error) {
@@ -18,7 +19,8 @@ type Feilmelding struct {
   Message string
 }
 
-type CWStruct struct {
+type WStruct struct {
+Current struct {
 	Coord struct {
 		Lon float64 `json:"lon"`
 		Lat float64 `json:"lat"`
@@ -51,29 +53,15 @@ type CWStruct struct {
 		ID      int     `json:"id"`
 		Message float64 `json:"message"`
 		Country string  `json:"country"`
-		Sunrise int     `json:"sunrise"`
-		Sunset  int     `json:"sunset"`
+		Sunrise int64     `json:"sunrise"`
+		Sunset  int64     `json:"sunset"`
 	} `json:"sys"`
 	ID   int    `json:"id"`
 	Name string `json:"name"`
 	Cod  int    `json:"cod"`
 }
-
-func CurrentWeather(location string) (Feilmelding, CWStruct) {
-  var m CWStruct
-  var feil Feilmelding
-  link := "https://api.openweathermap.org/data/2.5/weather?q=" + location + "&units=metric&appid=b1bf40e9707aee87cf7f39cd96df39b1"
-  resp, err := http.Get(link)
-  CheckError(err)
-  defer resp.Body.Close()
-  body, err := ioutil.ReadAll(resp.Body)
-  _ = json.Unmarshal(body, &feil)
-  _ = json.Unmarshal(body, &m)
-  return feil,m
-}
-
-type FStruct struct {
-	Cod     string  `json:"cod"`
+Forecast struct {
+  Cod     string  `json:"cod"`
 	Message float64 `json:"message"`
 	Cnt     int     `json:"cnt"`
 	List    []struct {
@@ -123,16 +111,27 @@ type FStruct struct {
 		Population int    `json:"population"`
 	} `json:"city"`
 }
+Response string
+Time string
+}
 
-func Forecast(location string) (Feilmelding, FStruct) {
-  var m FStruct
+func Weather(location string) (Feilmelding, WStruct) {
+  var m WStruct
   var feil Feilmelding
-  link := "https://api.openweathermap.org/data/2.5/forecast?q=" + location + "&units=metric&appid=b1bf40e9707aee87cf7f39cd96df39b1"
+  link := "https://api.openweathermap.org/data/2.5/weather?q=" + location + "&units=metric&appid=b1bf40e9707aee87cf7f39cd96df39b1"
   resp, err := http.Get(link)
   CheckError(err)
   defer resp.Body.Close()
   body, err := ioutil.ReadAll(resp.Body)
   _ = json.Unmarshal(body, &feil)
-  _ = json.Unmarshal(body, &m)
+  _ = json.Unmarshal(body, &m.Current)
+  link = "https://api.openweathermap.org/data/2.5/forecast?q=" + location + "&units=metric&appid=b1bf40e9707aee87cf7f39cd96df39b1"
+  resp2, err := http.Get(link)
+  CheckError(err)
+  defer resp2.Body.Close()
+  body2, err := ioutil.ReadAll(resp2.Body)
+  _ = json.Unmarshal(body2, &m.Forecast)
+  m.Response = responsecreator.Getresponse(m.Current.Weather[0].ID)
+  m.Time = responsecreator.Time(m.Current.Sys.Sunrise, m.Current.Sys.Sunset)
   return feil,m
 }

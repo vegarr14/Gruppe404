@@ -6,6 +6,7 @@ import (
     "net/http"
     "strings"
     "./weather"
+    "fmt"
 )
 
 func start(w http.ResponseWriter, r *http.Request) {
@@ -25,15 +26,12 @@ func start(w http.ResponseWriter, r *http.Request) {
 
 func getSite (w http.ResponseWriter, r *http.Request) {
 
-    type htmlStruct struct {
-    PageTitle string
-  }
   tmpl := template.Must(template.ParseFiles("result.html"))
 
   r.ParseForm()
-  _, data := weather.CurrentWeather(strings.Join(r.Form["search"], ""))
+  _, data := weather.Weather(strings.Join(r.Form["search"], ""))
+  fmt.Println(data)
   tmpl.Execute(w, data)
-
 }
 
 func css(w http.ResponseWriter, req *http.Request){
