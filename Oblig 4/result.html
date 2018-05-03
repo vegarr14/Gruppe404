@@ -45,17 +45,19 @@
     </div>
     <div id="forecastBox" class="box">
       <div id="forecastBoxData" class="dataBox">
-        <table>
+        <table class="TableS">
           <tr>
             <th>Time</th>
             <th>Forecast</th>
+            <th>Precipation</th>
             <th>Temp</th>
           </th>
           {{range .Forecast.List}}
             <tr>
-              <td>{{(index .Forecast.List 0).Dt}}</td>
-              <td>{{.Forecast.List.Weather.Main}}</td>
-              <td>{{.Forecast.List.Main.Temp}}</td>
+              <td class="TableS">{{.Dt}}</td>
+              <td class="TableS">{{(index .Weather 0).Main}}</td>
+              <td class="TableS">{{.Rain.ThreeH}} mm</td>
+              <td class="TableS">{{.Main.Temp}}°C</td>
             </tr>
           {{end}}
       </div>
