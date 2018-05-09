@@ -8,6 +8,7 @@ import (
     "./weather"
     "fmt"
 )
+var imgPath string
 
 func start(w http.ResponseWriter, r *http.Request) {
     type htmlStruct struct {
@@ -25,9 +26,7 @@ func start(w http.ResponseWriter, r *http.Request) {
 }
 
 func getSite (w http.ResponseWriter, r *http.Request) {
-
   tmpl := template.Must(template.ParseFiles("result.html"))
-
   r.ParseForm()
   _, data := weather.Weather(strings.Join(r.Form["search"], ""))
   fmt.Println(data)
@@ -38,10 +37,16 @@ func css(w http.ResponseWriter, req *http.Request){
   http.ServeFile(w, req, "style.css")
 }
 
+func getWeatherIcon(w http.ResponseWriter, req *http.Request){
+  imgPath = weather.ImgPath
+  http.ServeFile(w, req, imgPath)
+}
+
 func main() {
     http.HandleFunc("/", start)
     http.HandleFunc("/result", getSite) // setting router rule
     http.HandleFunc("/style.css", css)
+    http.HandleFunc("/weatherIcon.png", getWeatherIcon)
     err := http.ListenAndServe("localhost:8080", nil) // setting listening port
     if err != nil {
         log.Fatal("ListenAndServe: ", err)

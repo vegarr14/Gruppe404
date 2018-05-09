@@ -7,6 +7,7 @@ import (
   "encoding/json"
   "./responsecreator"
 )
+var ImgPath string
 
 func CheckError(err error) {
   if err != nil {
@@ -114,6 +115,7 @@ Forecast struct {
   //Modified Data
   Response string
   Time string
+  ImgPath string
 }
 
 func Weather(location string) (Feilmelding, WStruct) {
@@ -132,7 +134,7 @@ func Weather(location string) (Feilmelding, WStruct) {
   defer resp2.Body.Close()
   body2, err := ioutil.ReadAll(resp2.Body)
   _ = json.Unmarshal(body2, &m.Forecast)
-  m.Response = responsecreator.Getresponse(m.Current.Weather[0].ID)
+  m.Response, ImgPath = responsecreator.Getresponse(m.Current.Weather[0].ID)
   m.Time = responsecreator.Time(m.Current.Sys.Sunrise, m.Current.Sys.Sunset)
   return feil,m
 }

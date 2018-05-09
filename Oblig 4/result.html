@@ -21,9 +21,7 @@
       <h1>Current Weather</h1>
       <div id="currentWBoxData" class="dataBox">
         <div id="currentWBoxW">
-          <h2>
-            {{(index .Current.Weather 0).Main}}
-          </h2>
+          <img src="weatherIcon.png?{{.Current.Sys.Sunrise}}" alt="weather icon" width="120" height="120">
         </div>
         <div id="currentWBoxTemp">
           <h2>
