@@ -40,11 +40,6 @@ p{
   bottom: 0px;
   width: 100%;
 }
-.TableS{
-  border-style: solid;
-  border-width: 1;
-  border-color: grey;
-}
 #locationBox h1{
   font-size: 64px;
   margin: 5px;
@@ -96,6 +91,20 @@ p{
 #currentWBoxWind h2{
   font-size: 40px;
   margin-bottom: 0px
+}
+#forecastTable{
+  border-collapse: collapse;
+  width: 100%;
+}
+#forecastTable th{
+  padding-top: 12px;
+  padding-bottom: 12px;
+  background-color: #29537c;
+  color: white;
+}
+#forecastTable td, #forecastTable th{
+  border: 1px solid #ddd;
+  padding: 8px;
 }
 .textField{
   color: #29537c;
