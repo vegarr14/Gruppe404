@@ -33,16 +33,29 @@ func Getresponse(input int) (string, string) {
   return s, imgPath
 }
 
-func Time(sunrise int64, sunset int64) (string) {
+func Time(sunrise int64, sunset int64, unixnow int64) (string) {
   var t string
-  now := time.Now()
-  Unixnow := now.Unix()
-  if Unixnow < sunrise {
-    t = "sunrise in " + strconv.FormatInt(sunrise - Unixnow, 10) + " seconds"
-  } else if Unixnow < sunset {
-    t = "sunset in " + strconv.FormatInt(sunset - Unixnow, 10) + " seconds"
-  } else if Unixnow > sunset {
-    t = "sunset was " + strconv.FormatInt(Unixnow - sunset, 10) + " seconds ago"
+  var d time.Duration
+  var err error
+
+  if unixnow < sunrise {
+    d,err = time.ParseDuration(strconv.FormatInt(sunrise - unixnow, 10) + "s")
+    CheckError(err)
+    t = "sunrise in " + d.String()
+  } else if unixnow < sunset {
+    d,err = time.ParseDuration(strconv.FormatInt(sunset - unixnow, 10) + "s")
+    CheckError(err)
+    t = "sunset in " + d.String()
+  } else if unixnow > sunset {
+    d,err = time.ParseDuration(strconv.FormatInt(unixnow - sunset, 10) + "s")
+    CheckError(err)
+    t = "sunset was " + d.String() + " ago"
   }
   return t
+}
+
+func CheckError(err error) {
+  if err != nil {
+    fmt.Println("error:", err)
+  }
 }

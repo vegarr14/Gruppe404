@@ -135,6 +135,6 @@ func Weather(location string) (Feilmelding, WStruct) {
   body2, err := ioutil.ReadAll(resp2.Body)
   _ = json.Unmarshal(body2, &m.Forecast)
   m.Response, ImgPath = responsecreator.Getresponse(m.Current.Weather[0].ID)
-  m.Time = responsecreator.Time(m.Current.Sys.Sunrise, m.Current.Sys.Sunset)
+  m.Time = responsecreator.Time(m.Current.Sys.Sunrise, m.Current.Sys.Sunset, time.Now().Unix())
   return feil,m
 }
