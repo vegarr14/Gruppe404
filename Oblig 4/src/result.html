@@ -53,7 +53,7 @@
           </th>
           {{range .Forecast.List}}
             <tr>
-              <td>{{.Dt}}</td>
+              <td>{{.Time}}</td>
               <td>{{(index .Weather 0).Main}}</td>
               <td>{{.Rain.ThreeH}} mm</td>
               <td>{{.Main.Temp}}°C</td>

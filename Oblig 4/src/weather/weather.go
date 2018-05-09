@@ -5,7 +5,9 @@ import (
   "net/http"
   "io/ioutil"
   "encoding/json"
-  "./responsecreator"
+  "weather/responsecreator"
+  "time"
+  "strconv"
 )
 var ImgPath string
 
@@ -66,7 +68,8 @@ Forecast struct {
 	Message float64 `json:"message"`
 	Cnt     int     `json:"cnt"`
 	List    []struct {
-		Dt   int `json:"dt"`
+    Time string
+		Dt   int64 `json:"dt"`
 		Main struct {
 			Temp      float64 `json:"temp"`
 			TempMin   float64 `json:"temp_min"`
@@ -122,19 +125,30 @@ func Weather(location string) (Feilmelding, WStruct) {
   var m WStruct
   var feil Feilmelding
   link := "https://api.openweathermap.org/data/2.5/weather?q=" + location + "&units=metric&appid=b1bf40e9707aee87cf7f39cd96df39b1"
+  body := getData(link)
+  _ = json.Unmarshal(body, &feil)
+  _ = json.Unmarshal(body, &m.Current)
+  link2 := "https://api.openweathermap.org/data/2.5/forecast?q=" + location + "&units=metric&appid=b1bf40e9707aee87cf7f39cd96df39b1"
+  body2 := getData(link2)
+  _ = json.Unmarshal(body2, &m.Forecast)
+  m.Response, ImgPath = responsecreator.Getresponse(m.Current.Weather[0].ID)
+  m.Time = responsecreator.Time(m.Current.Sys.Sunrise, m.Current.Sys.Sunset, time.Now().Unix())
+
+  for i := 0 ; i < len(m.Forecast.List) ; i++ {
+    unix := m.Forecast.List[i].Dt
+    time := time.Unix(unix, 0)
+    dato := strconv.Itoa(time.Day()) + ". " + time.Month().String() + " " + strconv.Itoa(time.Hour()) + ":00"
+    fmt.Println(unix, dato)
+    m.Forecast.List[i].Time = dato
+  }
+
+  return feil,m
+}
+
+func getData(link string) ([]byte) {
   resp, err := http.Get(link)
   CheckError(err)
   defer resp.Body.Close()
   body, err := ioutil.ReadAll(resp.Body)
-  _ = json.Unmarshal(body, &feil)
-  _ = json.Unmarshal(body, &m.Current)
-  link = "https://api.openweathermap.org/data/2.5/forecast?q=" + location + "&units=metric&appid=b1bf40e9707aee87cf7f39cd96df39b1"
-  resp2, err := http.Get(link)
-  CheckError(err)
-  defer resp2.Body.Close()
-  body2, err := ioutil.ReadAll(resp2.Body)
-  _ = json.Unmarshal(body2, &m.Forecast)
-  m.Response, ImgPath = responsecreator.Getresponse(m.Current.Weather[0].ID)
-  m.Time = responsecreator.Time(m.Current.Sys.Sunrise, m.Current.Sys.Sunset, time.Now().Unix())
-  return feil,m
+  return body
 }

@@ -5,7 +5,7 @@ import (
     "log"
     "net/http"
     "strings"
-    "./weather"
+    "weather"
     "fmt"
 )
 var imgPath string
