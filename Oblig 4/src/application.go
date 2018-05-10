@@ -8,7 +8,6 @@ import (
     "weather"
     "fmt"
 )
-var imgPath string
 
 func start(w http.ResponseWriter, r *http.Request) {
     type htmlStruct struct {
@@ -43,7 +42,7 @@ func css(w http.ResponseWriter, req *http.Request){
 }
 
 func getWeatherIcon(w http.ResponseWriter, req *http.Request){
-  imgPath = weather.ImgPath
+  imgPath := weather.ImgPath
   http.ServeFile(w, req, imgPath)
 }
 
