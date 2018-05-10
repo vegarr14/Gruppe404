@@ -23,7 +23,7 @@ func Getresponse(input int) (string, string) {
     imgPath = "weather/icons/sno.png"
   }else if 701<= input && input <= 781 {
     s= "there is something bad happening"
-    imgPath = "weather/icons/littoveskyet.png"
+    imgPath = "weather/icons/littoverskyet.png"
   }else if 800 == input {
     s= "all clear"
     imgPath = "weather/icons/sol.png"
