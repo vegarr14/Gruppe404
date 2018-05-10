@@ -28,7 +28,10 @@ func start(w http.ResponseWriter, r *http.Request) {
 func getSite (w http.ResponseWriter, r *http.Request) {
   tmpl := template.Must(template.ParseFiles("result.html"))
   r.ParseForm()
-  _, data := weather.Weather(strings.Join(r.Form["search"], ""))
+  data := weather.Weather(strings.Join(r.Form["search"], ""))
+  if data.Feilmelding.Message != nil {
+    get404()
+  }
   fmt.Println(data)
   tmpl.Execute(w, data)
 }
