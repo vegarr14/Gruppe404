@@ -10,25 +10,25 @@ func Getresponse(input int) (string, string) {
   var s string
   var imgPath string
   if 200<= input && input<=232  {
-    s ="thunder"
+    s ="Thunder! Nananananananan Thunder!"
     imgPath = "weather/icons/torden.png"
   }else if 300<= input && input<= 321 {
-    s ="fo' drizzle muh nizzle"
+    s ="Fo' drizzle muh nizzle"
     imgPath = "weather/icons/solmedlittskyer.png"
   }else if 500<= input && input <= 531 {
-    s= "rain"
+    s= "I'll be crying in the rain"
     imgPath = "weather/icons/regn.png"
   }else if 600<= input && input <= 622 {
-    s= "you know nothing (jon)snow"
+    s= "Let it snow, let it snow, let it snow"
     imgPath = "weather/icons/sno.png"
   }else if 701<= input && input <= 781 {
-    s= "there is something bad happening"
-    imgPath = "weather/icons/littoveskyet.png"
+    s= "There is something bad happening here!\n What it is ain't exactly clear!"
+    imgPath = "weather/icons/Tornado.png"
   }else if 800 == input {
-    s= "all clear"
+    s= "You are my sunshine, my only sunshine!"
     imgPath = "weather/icons/sol.png"
   }else if 801<= input && input <= 804 {
-    s= "clouds"
+    s= "Take me to the clouds above"
     imgPath = "weather/icons/overskyet.png"
   }
   return s, imgPath
