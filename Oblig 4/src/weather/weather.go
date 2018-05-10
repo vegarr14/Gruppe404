@@ -17,12 +17,11 @@ func CheckError(err error) {
   }
 }
 
-type Feilmelding struct {
+type WStruct struct {
+Feilmelding struct{
   Cod string
   Message string
-}
-
-type WStruct struct {
+  }  
 Current struct {
 	Coord struct {
 		Lon float64 `json:"lon"`
@@ -123,11 +122,13 @@ Forecast struct {
 
 func Weather(location string) (Feilmelding, WStruct) {
   var m WStruct
-  var feil Feilmelding
   link := "https://api.openweathermap.org/data/2.5/weather?q=" + location + "&units=metric&appid=b1bf40e9707aee87cf7f39cd96df39b1"
   body := getData(link)
-  _ = json.Unmarshal(body, &feil)
-  _ = json.Unmarshal(body, &m.Current)
+  _ = json.Unmarshal(body, &m.Feilmelding)
+  err2 := json.Unmarshal(body, &m.Current)
+  if err2 != nil {
+    return m
+  }
   link2 := "https://api.openweathermap.org/data/2.5/forecast?q=" + location + "&units=metric&appid=b1bf40e9707aee87cf7f39cd96df39b1"
   body2 := getData(link2)
   _ = json.Unmarshal(body2, &m.Forecast)
@@ -142,7 +143,7 @@ func Weather(location string) (Feilmelding, WStruct) {
     m.Forecast.List[i].Time = dato
   }
 
-  return feil,m
+  return m
 }
 
 func getData(link string) ([]byte) {
