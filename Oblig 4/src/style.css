@@ -106,6 +106,14 @@ p{
   border: 1px solid #ddd;
   padding: 8px;
 }
+#errBox{
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  margin-left:-215px;
+  width: 430px;
+  height: 250px;
+}
 .textField{
   color: #29537c;
   width: 50%;

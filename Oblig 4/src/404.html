@@ -9,10 +9,13 @@
     <polygon fill="#29537c" points="0,60 100,0 30,100 0,100 " />
     <polygon fill="#1f4060" points="30,100 100,0 100,100" />
   </svg>
-  <div id="searchBox" class="box">
+  <div id="errBox" class="box">
     <h1>
       {{.PageTitle}}
     </h1>
+    <p>
+      {{.ErrorMessage}}
+    </p>
     <form action="/result" method="post">
       <input type="text" class="textField" name="search"><br>
       <input type="submit" class="button" value="Søk">

@@ -21,7 +21,7 @@ type WStruct struct {
 Feilmelding struct{
   Cod string
   Message string
-  }  
+  }
 Current struct {
 	Coord struct {
 		Lon float64 `json:"lon"`
@@ -120,7 +120,7 @@ Forecast struct {
   ImgPath string
 }
 
-func Weather(location string) (Feilmelding, WStruct) {
+func Weather(location string) (WStruct) {
   var m WStruct
   link := "https://api.openweathermap.org/data/2.5/weather?q=" + location + "&units=metric&appid=b1bf40e9707aee87cf7f39cd96df39b1"
   body := getData(link)
