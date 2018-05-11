@@ -1,0 +1,147 @@
+html, body {
+  margin:0 auto;
+  padding:0;
+  font-family: sans-serif;
+}
+h1{
+  color: #29537c;
+}
+h2{
+  color: #29537c;
+}
+p{
+  font-size: 12;
+  font-weight: bold;
+}
+.triple {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+}
+.box{
+  position: relative;
+  margin-top: 15px;
+  margin-left: 15px;
+  float: left;
+  border-radius: 25px;
+  background:rgb(245,245,245);
+  box-shadow: 2px 3px 10px black;
+  padding: 15px;
+  text-align: center;
+  height: auto;
+}
+.dataBox{
+  position: relative;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  width: 100%;
+}
+#locationBox h1{
+  font-size: 64px;
+  margin: 5px;
+}
+#currentWBox{
+  width: 30%;
+}
+#currentWBoxData{
+  height: 200px;
+}
+#content{
+  margin: auto;
+  width: 70%;
+}
+#locationBox{
+  margin-top: 15px;
+  width: 100%
+}
+#searchBox{
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  margin-left:-200px;
+  width: 400px;
+  height: 200px;
+}
+#currentWBoxW{
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 40%;
+}
+#currentWBoxTemp{
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  width: 60%;
+}
+#currentWBoxTemp h2{
+  font-size: 56px;
+  margin: 0px;
+}
+#currentWBoxWind{
+  position: absolute;
+  width: 100%;
+  left: 0px;
+  bottom: 0px;
+}
+#currentWBoxWind h2{
+  font-size: 40px;
+  margin-bottom: 0px
+}
+#responseBox{
+  white-space: pre-line;
+}
+#forecastBox{
+  width: 100%
+}
+#forecastTable{
+  border-collapse: collapse;
+  width: 100%;
+}
+#forecastTable th{
+  padding-top: 12px;
+  padding-bottom: 12px;
+  background-color: #29537c;
+  color: white;
+}
+#forecastTable td, #forecastTable th{
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+#sourceBox{
+  width: 100%;
+  bottom: 0px;
+}
+#errBox{
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  margin-left:-215px;
+  width: 430px;
+  height: 250px;
+}
+.textField{
+  color: #29537c;
+  width: 50%;
+  height: 25px;
+  border-radius: 5px;
+}
+.button {
+    background-color: #33669c; /* Green */
+    border: none;
+    border-radius: 5px;
+    color: white;
+    margin: 15px;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+.button:hover{
+  background-color: #29537c;
+}
