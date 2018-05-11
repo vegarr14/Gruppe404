@@ -7,12 +7,15 @@ Josef Skar
 Thomas Lochner  
 ### Info
 
-Det er nødvendig og sette GOPATH til oblig 4 mappa. Uten dette vil ikke importene fungere.
+Det er nødvendig og sette GOPATH til oblig 4 mappen. Uten dette vil ikke importene fungere.
 
 For å bruke applikasjonen må man skrive inn et bynavn eller et bynavn etterfulgt av et komma og landskode  
 eks: oslo  
 eksempel med landskode: oslo, no
 
+De to test filene kjøres med: go test <filnavn>  
+Testene er laget slik at det kun skrives ut "ok" i terminal.
+Hvis logikken endres slik at en av testene feiler, skrives det til terminal hvilke tester som blir fullført riktig og hvilke tester som feiler.
 
 ### Systemspesifikasjon
 
