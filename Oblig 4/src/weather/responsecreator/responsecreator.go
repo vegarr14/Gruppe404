@@ -6,6 +6,10 @@ import (
   "strconv"
 )
 
+/*Tar en tallverdi som input fra json data. Tallet sier hvilken type vær det er.
+* Funksjonen returnerer to strings. En tekts som vises på siden,
+* og en sti til et bilde som skal vises.
+*/
 func Getresponse(input int) (string, string) {
   var s string
   var imgPath string
