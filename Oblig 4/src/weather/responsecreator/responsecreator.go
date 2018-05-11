@@ -34,6 +34,11 @@ func Getresponse(input int) (string, string) {
   return s, imgPath
 }
 
+/*Funksjon som tar tiden for soloppgang, solnedgang og tiden i nå som input i unix time.
+* Sammenlinger input verdiene og returnerer en string som skal vises på siden.
+* Stringen viser hvor lenge det er til soloppgang eller solnedgang,
+* eller hvor lenge det er siden solnedgang.
+*/
 func Time(sunrise int64, sunset int64, unixnow int64) (string) {
   var t string
   var d time.Duration
