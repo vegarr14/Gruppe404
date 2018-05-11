@@ -44,4 +44,33 @@ Funksjoner:
 
 **Weather.go**
 
-aaa
+Weather.go filen har ansvar for å fylle html structen som brukes i html templates i application.go basert på søkeordet som sendes fra application.go
+
+Importerer:  
++ "fmt"
++ "net/http"
++ "io/ioutil"
++ "encoding/json"
++ "weather/responsecreator"
++ "time"
++ "strconv"
+
+Funksjoner:  
++ CheckError(error): Skriver ut en eventuelt feilmelding til terminal
++ Weather(string):Henter JSON data og fyller det i html structen. Stopper om man får feil.
++ Date(): Konverterer forcast verdiene fra unix time til  Day.Month.Hour
++ getData(string): Henter innholdet fra nettside.
+
+**Responsecreator.go**
+
+responsecreator.go filen har ansvar for å produsere riktige meldinger og vær ikon i Getresponse funksjonen, samt og produsere riktig solnedgang/soloppgang melding i funksjonen Time. Her må man også konvertere fra Unix time.
+
+Importerer:
++ "fmt"
++ "time"
++ "strconv"
+
+Funksjoner:
++ Getresponse(int):Sjekker værkode og returner en melding og hvilket værikon som skal vises
++ Time(int64, int64, int64): Finner ut om solen går ned eller opp samt skriver ut en melding med tid konvertert fra unixtime.
++ CheckError(error): Skriver ut feilmelding til terminal  
