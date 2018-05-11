@@ -17,6 +17,7 @@ func CheckError(err error) {
   }
 }
 
+
 type WStruct struct {
 Feilmelding struct{
   Cod string
@@ -120,32 +121,42 @@ Forecast struct {
   ImgPath string
 }
 
+var m WStruct
+
+/*Tar stednavn som input og setter inn i to links for api kall.
+* unmarshaler data inn i struct, sjekker etter feil.
+* starter flere andre funksjoner for å behandle noe av dataen,
+* hvis ikke det er noe feil.
+*/
 func Weather(location string) (WStruct) {
-  var m WStruct
   link := "https://api.openweathermap.org/data/2.5/weather?q=" + location + "&units=metric&appid=b1bf40e9707aee87cf7f39cd96df39b1"
+  link2 := "https://api.openweathermap.org/data/2.5/forecast?q=" + location + "&units=metric&appid=b1bf40e9707aee87cf7f39cd96df39b1"
   body := getData(link)
   _ = json.Unmarshal(body, &m.Feilmelding)
   err2 := json.Unmarshal(body, &m.Current)
   if err2 != nil {
     return m
+  } else {
+    body2 := getData(link2)
+    _ = json.Unmarshal(body2, &m.Forecast)
+    m.Response, ImgPath = responsecreator.Getresponse(m.Current.Weather[0].ID)
+    m.Time = responsecreator.Time(m.Current.Sys.Sunrise, m.Current.Sys.Sunset, time.Now().Unix())
+    Date()
+    return m
   }
-  link2 := "https://api.openweathermap.org/data/2.5/forecast?q=" + location + "&units=metric&appid=b1bf40e9707aee87cf7f39cd96df39b1"
-  body2 := getData(link2)
-  _ = json.Unmarshal(body2, &m.Forecast)
-  m.Response, ImgPath = responsecreator.Getresponse(m.Current.Weather[0].ID)
-  m.Time = responsecreator.Time(m.Current.Sys.Sunrise, m.Current.Sys.Sunset, time.Now().Unix())
+}
 
+//Tar unixtime verdiene fra forecast og gjør om til dato og tid på dagen.
+func Date() {
   for i := 0 ; i < len(m.Forecast.List) ; i++ {
     unix := m.Forecast.List[i].Dt
     time := time.Unix(unix, 0)
     dato := strconv.Itoa(time.Day()) + ". " + time.Month().String() + " " + strconv.Itoa(time.Hour()) + ":00"
-    fmt.Println(unix, dato)
     m.Forecast.List[i].Time = dato
   }
-
-  return m
 }
 
+//Henter innholdet på nettside.
 func getData(link string) ([]byte) {
   resp, err := http.Get(link)
   CheckError(err)
