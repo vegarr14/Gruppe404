@@ -4,12 +4,14 @@
   <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
+  <!--Produserer bakgrunn -->
   <svg class="triple" viewBox="0 0 100 100" preserveAspectRatio="none">
     <polygon fill="#336699" points="0,0 100,0 0,90" />
     <polygon fill="#29537c" points="0,60 100,0 30,100 0,100 " />
     <polygon fill="#1f4060" points="30,100 100,0 100,100" />
   </svg>
   <div id="content">
+    <!--Skriver ut Bynavn og landskode -->
     <div id="locationBox" class="box">
       <h1>
         {{.Current.Name}}
@@ -17,6 +19,7 @@
         {{.Current.Sys.Country}}
       </h1>
     </div>
+    <!--Skriver ut været slik det er nå, inkl ikon, temp og vind -->
     <div id="currentWBox" class="box">
       <h1>Current Weather</h1>
       <div id="currentWBoxData" class="dataBox">
@@ -35,13 +38,16 @@
         </div>
       </div>
     </div>
+    <!--Skriver ut melding basert på været -->
     <div id="responseBox" class="box">
       <h2>{{.Response}}</h2>
     </div>
+    <!--Skriver hvor lenge til solen går opp/ned -->
     <div id="sun" class="box">
       <h2>{{.Time}}</h2>
     </div>
     <div id="forecastBox" class="box">
+      <!--Skriver ut værmelding for hver 3 time i 5 dager -->
       <h1>Forecast for the next 5 days</h1>
       <div id="forecastBoxData" class="dataBox">
         <table id="forecastTable">

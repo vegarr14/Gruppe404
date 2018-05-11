@@ -8,7 +8,7 @@ import (
     "weather"
     "fmt"
 )
-
+//Returnerer startsiden til klient
 func start(w http.ResponseWriter, r *http.Request) {
     type htmlStruct struct {
       PageTitle string
@@ -23,7 +23,11 @@ func start(w http.ResponseWriter, r *http.Request) {
 
     tmpl.Execute(w, data)
 }
-
+/*
+* Sender søkeord fra klient til weather.Weather
+* og legger return i template før den sender resultatet til klient.
+* om Feilmelding oppstår sender klient til 404 siden.
+*/
 func getSite(w http.ResponseWriter, r *http.Request) {
   tmpl := template.Must(template.ParseFiles("result.html"))
   r.ParseForm()
@@ -36,16 +40,16 @@ func getSite(w http.ResponseWriter, r *http.Request) {
     tmpl.Execute(w, data)
   }
 }
-
+//Sender .CSS fil til klient
 func css(w http.ResponseWriter, req *http.Request){
   http.ServeFile(w, req, "style.css")
 }
-
+//Sender Værikon til klient
 func getWeatherIcon(w http.ResponseWriter, req *http.Request){
   imgPath := weather.ImgPath
   http.ServeFile(w, req, imgPath)
 }
-
+//Sender 404 side til klient
 func get404(w http.ResponseWriter, req *http.Request){
 
   type htmlStruct struct{
@@ -62,7 +66,7 @@ func get404(w http.ResponseWriter, req *http.Request){
 
   tmpl.Execute(w, data)
 }
-
+//Starter server på port 8080 og kjører funkjsoner basert på http.HandleFunc 
 func main() {
     http.HandleFunc("/", start)
     http.HandleFunc("/result", getSite) // setting router rule
