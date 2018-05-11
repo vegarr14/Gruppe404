@@ -4,11 +4,13 @@
   <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
+  <!--Produserer bakgrunn -->
   <svg class="triple" viewBox="0 0 100 100" preserveAspectRatio="none">
     <polygon fill="#336699" points="0,0 100,0 0,90" />
     <polygon fill="#29537c" points="0,60 100,0 30,100 0,100 " />
     <polygon fill="#1f4060" points="30,100 100,0 100,100" />
   </svg>
+  <!--Skriver ut feilmelding -->
   <div id="errBox" class="box">
     <h1>
       {{.PageTitle}}
@@ -16,6 +18,7 @@
     <p>
       {{.ErrorMessage}}
     </p>
+    <!--Sender klient søk til server -->
     <form action="/result" method="post">
       <input type="text" class="textField" name="search"><br>
       <input type="submit" class="button" value="Søk">
