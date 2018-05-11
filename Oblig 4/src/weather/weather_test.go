@@ -5,7 +5,7 @@ import (
   "fmt"
   "testing"
 )
-
+//Sjekker om to verdi i structen er tomme.
 func TestWeatherPositive(t *testing.T) {
   data := weather.Weather("oslo")
   if data.Current.Base == "" {
@@ -18,6 +18,7 @@ func TestWeatherPositive(t *testing.T) {
   }
 }
 
+//Tester for en by som skal gi feilmelding
 func TestWeatherNegative(t *testing.T) {
   data := weather.Weather("invalid city")
   fmt.Println(data)
