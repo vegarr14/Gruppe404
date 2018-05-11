@@ -51,7 +51,7 @@
             <th>Precipation</th>
             <th>Temp</th>
             <th>Wind</th>
-          </th>
+          </tr>
           {{range .Forecast.List}}
             <tr>
               <td>{{.Time}}</td>
@@ -61,6 +61,7 @@
               <td>{{.Wind.Speed}}M/s</td>
             </tr>
           {{end}}
+        </table>
       </div>
     </div>
     <div id="sourceBox" class="box">
