@@ -21,7 +21,7 @@
       <h1>Current Weather</h1>
       <div id="currentWBoxData" class="dataBox">
         <div id="currentWBoxW">
-          <img src="weatherIcon.png?{{.Current.Sys.Sunrise}}" alt="weather icon" width="120" height="120">
+          <img src="weatherIcon.png?{{.Current.Sys.Sunrise}}" alt="weather icon" width="130" height="130">
         </div>
         <div id="currentWBoxTemp">
           <h2>
@@ -51,7 +51,7 @@
             <th>Precipation</th>
             <th>Temp</th>
             <th>Wind</th>
-          </th>
+          </tr>
           {{range .Forecast.List}}
             <tr>
               <td>{{.Time}}</td>
@@ -61,12 +61,11 @@
               <td>{{.Wind.Speed}}M/s</td>
             </tr>
           {{end}}
+        </table>
       </div>
     </div>
     <div id="sourceBox" class="box">
-      <h1>
-        All data has been collected from OpenWeaterMap.Org with a free API license
-      </h1>
+      <h1>All data has been collected from OpenWeaterMap.Org with a free API license</h1>
     </div>
   </div>
 </body>

@@ -24,7 +24,7 @@ func start(w http.ResponseWriter, r *http.Request) {
     tmpl.Execute(w, data)
 }
 
-func getSite (w http.ResponseWriter, r *http.Request) {
+func getSite(w http.ResponseWriter, r *http.Request) {
   tmpl := template.Must(template.ParseFiles("result.html"))
   r.ParseForm()
   data := weather.Weather(strings.Join(r.Form["search"], ""))

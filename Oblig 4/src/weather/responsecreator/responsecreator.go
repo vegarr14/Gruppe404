@@ -16,20 +16,22 @@ func Getresponse(input int) (string, string) {
     s ="Fo' drizzle muh nizzle"
     imgPath = "weather/icons/solmedlittskyer.png"
   }else if 500<= input && input <= 531 {
-    s= "You might want to take an umbrella with you because\nI'll be crying in the rain"
+    s = "You might want to take an umbrella with you because\nI'll be crying in the rain"
     imgPath = "weather/icons/regn.png"
   }else if 600<= input && input <= 622 {
-    s= "You might need some gloves because the clouds decided to\nLet it snow, let it snow, let it snow"
+    s = "You might need some gloves because the clouds decided to\nLet it snow, let it snow, let it snow"
     imgPath = "weather/icons/sno.png"
   }else if 701<= input && input <= 781 {
-    s= "There is something bad happening here!\n What it is ain't exactly clear!"
+    s = "There is something bad happening here!\n What it is ain't exactly clear!"
     imgPath = "weather/icons/Tornado.png"
   }else if 800 == input {
-    s= "Bring your sunglasses with you because\nYou are my sunshine, my only sunshine!"
+    s = "Bring your sunglasses with you because\nYou are my sunshine, my only sunshine!"
     imgPath = "weather/icons/sol.png"
   }else if 801<= input && input <= 804 {
-    s= "Take me to the clouds above"
+    s = "Take me to the clouds above"
     imgPath = "weather/icons/overskyet.png"
+  }else{
+    s = "Invalid value, how did this happen?"
   }
   return s, imgPath
 }
