@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+  <svg class="triple" viewBox="0 0 100 100" preserveAspectRatio="none">
+    <polygon fill="#336699" points="0,0 100,0 0,90" />
+    <polygon fill="#29537c" points="0,60 100,0 30,100 0,100 " />
+    <polygon fill="#1f4060" points="30,100 100,0 100,100" />
+  </svg>
+  <div id="content">
+    <div id="locationBox" class="box">
+      <h1>
+        {{.Current.Name}}
+        {{", "}}
+        {{.Current.Sys.Country}}
+      </h1>
+    </div>
+    <div id="currentWBox" class="box">
+      <h1>Current Weather</h1>
+      <div id="currentWBoxData" class="dataBox">
+        <div id="currentWBoxW">
+          <h2>
+            {{(index .Current.Weather 0).Main}}
+          </h2>
+        </div>
+        <div id="currentWBoxTemp">
+          <h2>
+            {{.Current.Main.Temp}}°C
+          </h2>
+        </div>
+        <div id="currentWBoxWind">
+          <h2>
+            Wind: {{.Current.Wind.Speed}} M/s
+          </h2>
+        </div>
+      </div>
+    </div>
+    <div id="responseBox" class="box">
+      <h2>{{.Response}}</h2>
+    </div>
+    <div id="sun" class="box">
+      <h2>{{.Time}}</h2>
+    </div>
+    <div id="forecastBox" class="box">
+      <div id="forecastBoxData" class="dataBox">
+        <table class="TableS">
+          <tr>
+            <th>Time</th>
+            <th>Forecast</th>
+            <th>Precipation</th>
+            <th>Temp</th>
+          </th>
+          {{range .Forecast.List}}
+            <tr>
+              <td class="TableS">{{.Dt}}</td>
+              <td class="TableS">{{(index .Weather 0).Main}}</td>
+              <td class="TableS">{{.Rain.ThreeH}} mm</td>
+              <td class="TableS">{{.Main.Temp}}°C</td>
+            </tr>
+          {{end}}
+      </div>
+    </div>
+</body>
+</html>
